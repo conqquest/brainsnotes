@@ -133,7 +133,7 @@ npm run dev
 ## 🌐 Deployment
 
 - **Backend:** Render
-- **Frontend:** Vercel
+- **Frontend:** Cloudflare
 
 ---
 
@@ -166,5 +166,5 @@ This project is licensed under the **MIT License**.
 
 ## 📫 Contact
 
-- **GitHub:** [@rishav76dev](https://github.com/rishav76dev)
-- **Twitter:** [@rishav76dev](https://twitter.com/rishav76)
+- **GitHub:** [conqquest](https://github.com/conqquest)
+- **Twitter:** [@adarshtwt7](https://twitter.com/adarshtwt7)
