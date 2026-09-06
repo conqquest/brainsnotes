@@ -12,15 +12,12 @@ interface ButtonProps {
 }
 
 const variantClasses = {
-  // Workable Green
-  primary: "bg-[#00835C] text-white hover:bg-[#006e4d] focus:ring-[#00835C]",
-  // Clean Slate Gray (Neutral)
-  secondary:
-    "bg-slate-100 text-slate-700 hover:bg-slate-200 focus:ring-slate-300",
+  primary: "bg-[#111111] text-white hover:bg-[#635BFF] shadow-md focus:ring-[#635BFF] font-extrabold",
+  secondary: "bg-white text-[#111111] border border-amber-900/15 hover:bg-amber-100/60 font-bold",
 };
 
 const defaultStyles =
-  "px-4 py-2 rounded-md text-sm font-medium flex items-center justify-center gap-2 transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed";
+  "px-5 py-2.5 rounded-full text-sm flex items-center justify-center gap-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95";
 
 export function Button({
   variant,

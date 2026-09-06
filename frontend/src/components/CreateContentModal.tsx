@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
-import { Button } from "./Button";
 import { Input } from "./input";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
@@ -51,91 +50,107 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
   return (
     <>
       {open && (
-        <div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Overlay */}
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40"></div>
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={onClose}
+          />
 
           {/* Modal */}
-          <div className="fixed inset-0 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-md p-6 relative">
-              {/* Header with Title and Close Button */}
-              <div className="flex items-center justify-center mb-6">
-                <div className="text-4xl font-bold">Add content</div>
-                <div
-                  className="absolute top-4 right-4 cursor-pointer"
-                  onClick={onClose}
+          <div className="bg-[#F5F0E8] rounded-[36px] shadow-2xl border border-amber-900/10 w-full max-w-lg p-7 sm:p-9 relative z-10 text-[#111111] animate-fadeIn font-sans">
+            
+            {/* Sticker Badge */}
+            <div className="bg-[#FA582C] text-white p-2.5 rounded-2xl text-xl shadow-xl border-2 border-white absolute -top-5 left-8 transform -rotate-6">
+              ✨
+            </div>
+
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6 pt-2">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight">
+                create new item
+              </h2>
+              <button
+                onClick={onClose}
+                className="p-2 text-slate-400 hover:text-[#111111] transition-colors rounded-full hover:bg-amber-100/60"
+              >
+                <CrossIcon />
+              </button>
+            </div>
+
+            {/* Select Content Type Pills */}
+            <div className="mb-6">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Item Type</p>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setType(ContentType.Youtube)}
+                  className={`py-2.5 px-3 rounded-2xl font-extrabold text-xs transition-all border ${
+                    type === ContentType.Youtube
+                      ? "bg-[#FFFBEB] text-amber-900 border-amber-300 shadow-md ring-2 ring-amber-300"
+                      : "bg-white/80 text-slate-700 border-slate-200 hover:bg-white"
+                  }`}
                 >
-                  <CrossIcon />
-                </div>
+                  🎥 YouTube
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setType(ContentType.Twitter)}
+                  className={`py-2.5 px-3 rounded-2xl font-extrabold text-xs transition-all border ${
+                    type === ContentType.Twitter
+                      ? "bg-[#F3E8FF] text-purple-900 border-purple-300 shadow-md ring-2 ring-purple-300"
+                      : "bg-white/80 text-slate-700 border-slate-200 hover:bg-white"
+                  }`}
+                >
+                  🐦 Twitter
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setType(ContentType.Document)}
+                  className={`py-2.5 px-3 rounded-2xl font-extrabold text-xs transition-all border ${
+                    type === ContentType.Document
+                      ? "bg-[#ECFDF5] text-emerald-900 border-emerald-300 shadow-md ring-2 ring-emerald-300"
+                      : "bg-white/80 text-slate-700 border-slate-200 hover:bg-white"
+                  }`}
+                >
+                  📄 Document
+                </button>
               </div>
+            </div>
 
-              {/* Step 1: Select Content Type */}
-              <div className="mb-4">
-                <h2 className="mb-2 text-center">Select Content Type</h2>
-                <div className="flex justify-center gap-2">
-                  <Button
-                    text="YouTube"
-                    variant={
-                      type === ContentType.Youtube ? "primary" : "secondary"
-                    }
-                    onClick={() => setType(ContentType.Youtube)}
-                  />
-                  <Button
-                    text="Twitter"
-                    variant={
-                      type === ContentType.Twitter ? "primary" : "secondary"
-                    }
-                    onClick={() => setType(ContentType.Twitter)}
-                  />
-                  <Button
-                    text="Document"
-                    variant={
-                      type === ContentType.Document ? "primary" : "secondary"
-                    }
-                    onClick={() => setType(ContentType.Document)}
-                  />
-                </div>
+            {/* Title */}
+            <div className="mb-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Title</p>
+              <Input reference={titleRef} placeholder="Enter a descriptive title..." />
+            </div>
+
+            {/* Dynamic Fields */}
+            {type === ContentType.Document && (
+              <div className="mb-6">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Content / Note</p>
+                <textarea
+                  ref={descriptionRef}
+                  placeholder="Write your document note or idea here..."
+                  className="w-full p-4 bg-white/90 border border-amber-900/15 rounded-2xl text-[#111111] placeholder-slate-400 font-medium text-sm resize-none h-36 focus:outline-none focus:ring-2 focus:ring-[#635BFF]/40 focus:border-[#635BFF] shadow-sm"
+                />
               </div>
+            )}
 
-              {/* Step 2: Title */}
-              {type && (
-                <div className="mb-4">
-                  <Input reference={titleRef} placeholder="Title" />
-                </div>
-              )}
+            {(type === ContentType.Youtube || type === ContentType.Twitter) && (
+              <div className="mb-6">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">URL / Link</p>
+                <Input reference={linkRef} placeholder={type === ContentType.Youtube ? "https://youtube.com/watch?v=..." : "https://x.com/username/status/..."} />
+              </div>
+            )}
 
-              {/* Step 3: Dynamic Fields */}
-              {type === ContentType.Document && (
-                <div className="mb-4">
-                  <textarea
-                    ref={descriptionRef}
-                    placeholder="Write your document here..."
-                    className="w-full p-3 border rounded resize-none h-40 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  />
-                </div>
-              )}
-
-              {(type === ContentType.Youtube ||
-                type === ContentType.Twitter) && (
-                <div className="space-y-4 mb-4">
-                  <Input reference={linkRef} placeholder="Link" />
-                  {/* <textarea
-                    ref={descriptionRef}
-                    placeholder="Short description..."
-                    className="w-full p-3 border rounded resize-none h-24 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  /> */}
-                </div>
-              )}
-
-              {type && (
-                <div className="flex justify-center">
-                  <Button
-                    onClick={addContent}
-                    variant="primary"
-                    text="Submit"
-                  />
-                </div>
-              )}
+            {/* Submit Button */}
+            <div className="pt-2">
+              <button
+                onClick={addContent}
+                className="w-full bg-[#111111] text-white font-extrabold py-3.5 px-6 rounded-full text-base hover:bg-[#635BFF] transition-all shadow-xl hover:scale-[1.02] active:scale-95"
+              >
+                Save Item To Brain →
+              </button>
             </div>
           </div>
         </div>

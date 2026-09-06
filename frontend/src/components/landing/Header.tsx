@@ -5,33 +5,28 @@ import { Logo } from "../../icons/Logo";
 export default function Header() {
   const navigate = useNavigate();
   return (
-    // Changed: bg-white/80 -> solid bg-white, lighter border color
-    <header className="border-b border-gray-100 bg-white sticky top-0 z-50">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {/* Changed: Text-purple-600 -> text-[#00835C] (Workable Green) */}
-          <div className="w-8 h-8 text-[#00835C] rounded-lg flex items-center justify-center">
+    <header className="border-b border-purple-100/60 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
+          <div className="w-9 h-9 text-[#7C5CFC] rounded-xl bg-purple-50 flex items-center justify-center shadow-sm">
             <Logo />
           </div>
-          {/* Changed: Removed Gradient -> Solid Dark Navy text (#1C2939) */}
-          <span className="text-xl font-bold text-[#1C2939] tracking-tight">
-            SecondBrains
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#7C5CFC] to-[#6A4CE0] tracking-tight">
+            Brains
           </span>
         </div>
-        <nav className="hidden md:flex items-center gap-4">
-          {/* Changed: Outline button styled as a clean text link to match Workable's "Log in" */}
+        <nav className="flex items-center gap-3">
           <ButtonL
             variant="outline"
             size="sm"
-            className="border-transparent bg-transparent text-slate-600 hover:text-[#00835C] hover:bg-slate-50 font-medium transition-colors"
+            className="border-purple-200 bg-white text-[#7C5CFC] hover:bg-purple-50 font-medium"
             onClick={() => navigate("/signin")}
           >
             Sign In
           </ButtonL>
-          {/* Changed: Removed Gradient -> Solid Workable Green (#00835C) */}
           <ButtonL
             size="sm"
-            className="bg-[#00835C] hover:bg-[#006e4d] text-white font-medium shadow-sm transition-colors"
+            className="bg-gradient-to-r from-[#7C5CFC] to-[#6A4CE0] hover:from-[#6A4CE0] hover:to-[#5839CC] text-white font-medium shadow-md shadow-purple-200"
             onClick={() => navigate("/signup")}
           >
             Get Started

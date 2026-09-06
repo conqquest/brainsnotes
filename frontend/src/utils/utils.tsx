@@ -58,7 +58,7 @@ async function signup(
   navigate: (path: string) => void
 ) {
   try {
-    const response = await axios.post(BACKEND_URL + "/api/v1/signup", {
+    const response = await axios.post(BACKEND_URL + "/api/v1/user/signup", {
       username,
       password,
     });

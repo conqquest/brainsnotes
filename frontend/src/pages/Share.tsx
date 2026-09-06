@@ -68,10 +68,10 @@ export default function Share() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading shared content...</p>
+      <div className="min-h-screen bg-[#0A0A0C] flex items-center justify-center p-4">
+        <div className="bg-[#F5F0E8] rounded-3xl p-8 text-center border border-amber-900/10 shadow-2xl">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#111111] mx-auto mb-4"></div>
+          <p className="text-slate-700 font-bold text-base">Loading shared brain content...</p>
         </div>
       </div>
     );
@@ -79,14 +79,14 @@ export default function Share() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto p-8">
-          <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Oops!</h2>
-          <p className="text-red-600 mb-4">{error}</p>
+      <div className="min-h-screen bg-[#0A0A0C] flex items-center justify-center p-4">
+        <div className="bg-[#F5F0E8] rounded-3xl p-8 text-center max-w-md w-full border border-amber-900/10 shadow-2xl">
+          <div className="text-5xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-black text-[#111111] mb-2">Oops!</h2>
+          <p className="text-red-600 font-medium mb-6">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+            className="bg-[#111111] text-white font-extrabold px-6 py-3 rounded-full hover:bg-[#635BFF] transition-all shadow-md"
           >
             Try Again
           </button>
@@ -96,24 +96,37 @@ export default function Share() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-indigo-100 to-purple-200 p-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-semibold text-purple-700 mb-2">
-            {username}'s Shared Brain
+    <div className="min-h-screen bg-[#0A0A0C] p-4 sm:p-8 flex items-center justify-center font-sans">
+      <div className="bg-[#F5F0E8] rounded-[40px] max-w-[1440px] w-full p-6 sm:p-10 md:p-12 shadow-2xl border border-amber-900/10 min-h-[calc(100vh-3rem)] text-[#111111]">
+        
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8 pb-6 border-b border-amber-900/10">
+          <div className="flex items-center gap-2">
+            <span className="text-orange-500 text-2xl">💥</span>
+            <span className="font-serif italic font-extrabold text-3xl text-[#111111] tracking-tight">
+              brains
+            </span>
+          </div>
+          <div className="text-xs sm:text-sm font-bold bg-amber-100/70 border border-amber-200 px-4 py-2 rounded-full text-amber-900">
+            Read-Only Shared Workspace
+          </div>
+        </div>
+
+        {/* Banner */}
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-5xl font-black text-[#111111] mb-2 tracking-tight">
+            {username}'s Curated Brain 🧠
           </h1>
-          <p className="text-gray-600">
-            Explore this curated collection of content
+          <p className="text-slate-600 font-medium text-base">
+            Explore this collection of tweets, videos, and document notes shared with you.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {contents.length > 0 ? (
             contents.map((item) => (
-              <div
-                key={item._id}
-                className="flex-grow sm:flex-grow-0 basis-[250px] max-w-[300px]"
-              >
+              <div key={item._id} className="w-full">
                 <Card
                   title={item.title}
                   link={item.link}
@@ -125,10 +138,10 @@ export default function Share() {
               </div>
             ))
           ) : (
-            <div className="text-center py-12">
+            <div className="col-span-full text-center py-20 bg-white/50 rounded-3xl border border-dashed border-amber-900/20">
               <div className="text-6xl mb-4">📚</div>
-              <p className="text-gray-500 text-lg">
-                No content has been shared yet.
+              <p className="text-slate-700 font-bold text-lg">
+                No content has been shared in this brain yet.
               </p>
             </div>
           )}

@@ -1,7 +1,5 @@
 import { useRef } from "react";
-import { Button } from "../components/Button";
 import { Input } from "../components/input";
-import { Logo } from "../icons/Logo";
 import { useNavigate, useLocation } from "react-router-dom";
 import { signin } from "../utils/utils";
 
@@ -26,50 +24,59 @@ export function Signin() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-slate-100 flex justify-center items-center px-4">
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 w-full max-w-sm p-6 space-y-6">
+    <div className="min-h-screen w-full bg-[#0A0A0C] flex justify-center items-center p-4 font-sans">
+      <div className="bg-[#F5F0E8] rounded-[36px] border border-amber-900/10 shadow-2xl w-full max-w-md p-8 sm:p-10 space-y-6 relative overflow-hidden text-[#111111] animate-fadeIn">
+        
+        {/* Sticker Badge */}
+        <div className="bg-[#5B75FA] text-white p-3 rounded-2xl text-2xl shadow-xl border-2 border-white absolute -top-5 left-1/2 -translate-x-1/2 transform rotate-6">
+          🔑
+        </div>
+
         {/* Header */}
-        <div className="text-center space-y-2 flex flex-col items-center">
-          <Logo />
-          <h1 className="text-2xl font-semibold text-[#1C2939]">
-            Welcome Back
+        <div className="text-center space-y-2 pt-4">
+          <div 
+            className="font-serif italic font-extrabold text-4xl text-[#111111] cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            brains
+          </div>
+          <h1 className="text-3xl font-black text-[#111111] tracking-tight">
+            welcome back
           </h1>
-          <p className="text-sm text-slate-500 leading-relaxed">
-            Sign in to access your saved tweets, <br />
-            documents, and videos
+          <p className="text-sm text-slate-600 font-medium leading-relaxed">
+            Sign in to access your curated brain, saved tweets, videos, and notes.
           </p>
         </div>
 
         {/* Inputs */}
         <div className="space-y-4">
           <div>
-            <p className="font-medium text-[#1C2939] pb-1">Username</p>
-            <Input reference={usernameRef} placeholder="Username" />
+            <p className="font-bold text-[#111111] pb-1.5 text-xs uppercase tracking-wider">Username</p>
+            <Input reference={usernameRef} placeholder="Enter your username" />
           </div>
 
           <div>
-            <p className="font-medium text-[#1C2939] pb-1">Password</p>
-            <Input reference={passwordRef} placeholder="Password" />
+            <p className="font-bold text-[#111111] pb-1.5 text-xs uppercase tracking-wider">Password</p>
+            <Input reference={passwordRef} placeholder="Enter your password" type="password" />
           </div>
         </div>
 
         {/* Actions */}
         <div className="space-y-4 pt-2">
-          <Button
+          <button
             onClick={handleSignin}
-            loading={false}
-            variant="primary"
-            text="Sign in"
-            fullWidth={true}
-          />
+            className="w-full bg-[#111111] text-white font-extrabold py-3.5 px-6 rounded-full text-base hover:bg-[#635BFF] transition-all shadow-xl hover:scale-[1.02] active:scale-95"
+          >
+            Sign In →
+          </button>
 
-          <p className="text-center text-slate-600 text-sm">
-            New here?{" "}
+          <p className="text-center text-slate-600 text-sm font-medium">
+            Don't have a brain account?{" "}
             <span
               onClick={() => navigate("/signup")}
-              className="text-[#00835C] hover:text-[#006e4d] cursor-pointer font-medium"
+              className="text-[#635BFF] hover:underline cursor-pointer font-bold"
             >
-              Create an account
+              Sign up here
             </span>
           </p>
         </div>

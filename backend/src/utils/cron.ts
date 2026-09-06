@@ -1,5 +1,6 @@
 import { CronJob } from "cron";
 import https from "https";
+import http from "http";
 
 const job = new CronJob("*/14 * * * *", function () {
   const apiUrl = process.env.API_URL;
@@ -7,7 +8,10 @@ const job = new CronJob("*/14 * * * *", function () {
     console.error("API_URL environment variable is not defined");
     return;
   }
-  https
+  
+  const client = apiUrl.startsWith("https") ? https : http;
+
+  client
     .get(apiUrl, (res) => {
       if (res.statusCode === 200) {
         console.log("GET request sent successfully");
@@ -15,7 +19,7 @@ const job = new CronJob("*/14 * * * *", function () {
         console.error("GET request failed with status:", res.statusCode);
       }
     })
-    .on("error", (e) => console.error("Error while sending request:", e));
+    .on("error", (e) => console.error("Error while sending request:", e.message));
 });
 
 export default job;

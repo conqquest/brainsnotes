@@ -5,7 +5,18 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
+        primary: {
+          DEFAULT: '#7C5CFC',
+          hover: '#6A4CE0',
+        },
+        lavender: {
+          light: '#EDE8F5',
+          DEFAULT: '#EDE8F5',
+        },
         gray: {
           50: "rgba(255, 255, 255, 0.5)",
           100: "#eeeeef",
@@ -13,10 +24,30 @@ export default {
           600: "#95989c"
         },
         purple: {
-          200: "#d9ddee",
-          500: "#9492db",
-          600: "#7164c0",
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          500: '#9492db',
+          600: '#7164c0',
         }
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        cardHover: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-4px)' },
+        }
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-out forwards',
+        slideUp: 'slideUp 0.4s ease-out forwards',
       }
     },
   },

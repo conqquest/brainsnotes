@@ -13,15 +13,15 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  // Workable Green Solid
-  default: "text-white bg-[#00835C] hover:bg-[#006e4d] shadow-sm",
+  // Purple Gradient Solid
+  default: "text-white bg-gradient-to-r from-[#7C5CFC] to-[#6A4CE0] hover:from-[#6A4CE0] hover:to-[#5839CC] shadow-md shadow-purple-200",
 
-  // Clean Gray Outline -> Hover Green
+  // Clean Purple Outline
   outline:
-    "border border-slate-300 bg-white text-slate-700 hover:border-[#00835C] hover:text-[#00835C] hover:bg-slate-50 transition-all",
+    "border border-purple-200 bg-white text-[#7C5CFC] hover:border-[#7C5CFC] hover:bg-purple-50 transition-all",
 
-  // Secondary Gray
-  secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
+  // Secondary Soft Lavender
+  secondary: "bg-purple-50 text-[#7C5CFC] hover:bg-purple-100",
 };
 
 export const ButtonL = forwardRef<HTMLButtonElement, ButtonLProps>(
@@ -30,8 +30,8 @@ export const ButtonL = forwardRef<HTMLButtonElement, ButtonLProps>(
       <button
         ref={ref}
         className={twMerge(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium rounded-md transition-colors duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00835C] focus-visible:ring-offset-2 ring-offset-white",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium rounded-xl transition-all duration-200 active:scale-95",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFC] focus-visible:ring-offset-2 ring-offset-white",
           "disabled:opacity-50 disabled:pointer-events-none",
           "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
           sizeClasses[size],
