@@ -5,3 +5,7 @@ node_modules/
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.*
