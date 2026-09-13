@@ -39,7 +39,7 @@ resource "aws_launch_template" "app" {
     systemctl enable docker
     systemctl start docker
 
-    aws ecr get-login-password --region ${data.aws_region.current.name} | \
+    aws ecr get-login-password --region ${data.aws_region.current.region} | \
       docker login --username AWS --password-stdin ${aws_ecr_repository.backend.repository_url}
 
     docker pull ${aws_ecr_repository.backend.repository_url}:latest
@@ -77,4 +77,3 @@ resource "aws_launch_template" "app" {
     Name = "brains-launch-template"
   }
 }
-
