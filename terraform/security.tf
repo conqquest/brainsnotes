@@ -25,12 +25,22 @@ resource "aws_security_group" "alb" {
   }
 }
 
-# Security Group for Backend EC2
+# Security Group for EC2
 resource "aws_security_group" "backend" {
   name        = "brains-backend-sg"
-  description = "Allow backend traffic only from ALB"
+  description = "Allow application traffic only from ALB"
   vpc_id      = aws_vpc.main.id
 
+  # Frontend
+  ingress {
+    description     = "Frontend traffic from ALB"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  # Backend
   ingress {
     description     = "Backend traffic from ALB"
     from_port       = 5000
@@ -40,7 +50,7 @@ resource "aws_security_group" "backend" {
   }
 
   egress {
-    description = "Allow all outbound traffic"
+    description = "Allow outbound traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
