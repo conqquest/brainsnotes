@@ -604,6 +604,3 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
-<p align="center">
-  <sub>Built with ❤️ as a case study in highly available cloud architecture</sub>
-</p>
